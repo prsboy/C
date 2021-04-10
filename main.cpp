@@ -1,64 +1,41 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-class Image {
+class Ice
+{
 public:
-	operator string() {
-		return "사진";
-	}
+    Ice() {cout<<"Ice()"<<endl;}
+    ~Ice() {cout<<"~Ice()"<<endl;}
 };
 
-class Message {
+class Pat
+{
 public:
-	Message(int sendTime, string sendName)
-		: sendTime(sendTime), sendName(sendName) {}
+    Pat() {cout<<"Pat()"<<endl;}
+    ~Pat() {cout<<"~Pat()"<<endl;};
+};
 
-	int GetSendTime() const { return sendTime; }
-	string GetSendName() const { return sendName; }
-
+class Bingsoo
+{
 private:
-	int sendTime;
-	string sendName;
-};
-
-class TextMessage : public Message {
+    Ice ice;
 public:
-	TextMessage(int sendTime, string sendName, string text)
-		: Message(sendTime, sendName), text(text) {}
-
-	string GetText() const { return text; }
-
-private:
-	string text;
+    Bingsoo(){cout<<"Bingsoo()"<<endl;}
+    ~Bingsoo(){cout<<"~Bingsoo()"<<endl;}
 };
 
-class ImageMessage : public Message {
+class PatBingsoo : public Bingsoo
+{
+private:
+    Pat pat;
 public:
-	ImageMessage(int sendTime, string sendName, Image *image)
-		: Message(sendTime, sendName), p_image(image) {}
-
-	Image *GetImage() const { return p_image; }
-
-private:
-	Image *p_image;
+    PatBingsoo(){cout<<"PatBingsoo()"<<endl;}    
+    ~PatBingsoo(){cout<<"~PatBingsoo()"<<endl;}
 };
 
-int main() {
-	Image *p_dogImage = new Image();
-	TextMessage *hello = new TextMessage(10, "두들", "안녕");
-	ImageMessage *dog = new ImageMessage(20, "두들", p_dogImage);
-
-	cout << "보낸 시간 : " << hello->GetSendTime() << endl;
-	cout << "보낸 사람 : " << hello->GetSendName() << endl;
-	cout << "  내 용   : " << hello->GetText() << endl;
-	cout << endl;
-
-	cout << "보낸 시간 : " << dog->GetSendTime() << endl;
-	cout << "보낸 사람 : " << dog->GetSendName() << endl;
-	cout << "  내 용   : " << (string)*dog->GetImage() << endl;
-	cout << endl;
-
-	delete p_dogImage;
+int main()
+{
+    PatBingsoo *p = new PatBingsoo;
+    delete p;
 }
