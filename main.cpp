@@ -1,28 +1,36 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-class TextMessage
+class Base
 {
-private:
-    int sendTime;
-    string sendName;
-    string text;
 public:
-    TextMessage(int sendTime, string sendName, string text)
+    void bFunc()
     {
-        this->sendTime = sendTime;
-        this->sendName = sendName;
-        this->text = text;
+        cout<<"Hello!"<<endl;
     }
 
-    int GetSendTime() const {return sendTime;}
-    string GetSendName() const {return sendName;}
-    string GetText() const {return text;}
+    int bNum;
+};
+
+class Derived : public Base
+{
+public:
+    void dFunc()
+    {
+        cout<<"Hello?"<<endl;
+    }
+
+    int dNum;
 };
 
 int main()
 {
+    Base b;
+    Derived d;
 
+    b.bFunc();
+    b.bNum = 1;
+
+    
 }
